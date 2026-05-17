@@ -17,15 +17,35 @@ namespace WindowsFormsApp3
             InitializeComponent();
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+    
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form7 frm = new Form7();
+            frm.Show();
+            this.Hide();
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            new Form3().Show();
-            this.Show();
+            Form1 frm = new Form1();
+            frm.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

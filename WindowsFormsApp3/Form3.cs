@@ -16,5 +16,20 @@ namespace WindowsFormsApp3
         {
             InitializeComponent();
         }
+        
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Form3_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

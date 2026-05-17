@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Data;
+using MySql.Data.MySqlClient;   
 namespace WindowsFormsApp3
 {
     public partial class Form1 : Form
@@ -16,57 +17,58 @@ namespace WindowsFormsApp3
         {
             InitializeComponent();
         }
-
+        MyDatabase DB = new MyDatabase();
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (DB.TestConnection() == true)
+            {
+                MessageBox.Show("Connected Succesfully");
+            }
+            else
+            {
+                MessageBox.Show("Not Connected");
 
+            }
         }
-        string[,] userCredentials =
+        string[,] UserCredentials =
         {
-            {"admin", "hahaha"},
-            {"admin", "kayii"},
-            {"admin", "wowowow"},
-            {"Admin Department", "Staff Deparment"}
+            {"admin", "hahaha","Kaye Chelsy Campomanes"}
+            
         };
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (tbUsername.Text == "")
             {
-                MessageBox.Show("Please enter username");
+                MessageBox.Show("Please enter username!", "Validation");
                 tbUsername.Focus();
             }
-
             else if (tbPassword.Text == "")
             {
-                MessageBox.Show("Please enter password");
+                MessageBox.Show("Please enter password!", "Validation");
                 tbPassword.Focus();
             }
-
             else
             {
-                for (int x = 0; x < userCredentials.Length; x++)
+                DataTable dt = DB.ExecuteReturnQuery("SELECT * from tbllogincredentials WHERE user_username = @uname and user_password = @pword;",
+                    new MySqlParameter("@uname", tbUsername.Text),
+                    new MySqlParameter("@pword", tbPassword.Text));
+
+
+                if (dt.Rows.Count == 1)
                 {
-                    if (userCredentials[0, x] == tbUsername.Text)
-                    {
-                        if (userCredentials[1, x] == tbPassword.Text)
-                        {
-                            MessageBox.Show("Welcome " + userCredentials[2, x] + " from " + userCredentials[3, x]);
-                            frmHome frm = new frmHome();
-                            this.Hide();
-                            frm.Show();
-
-
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid username/password");
-                        break;
-                    }
+                    Form2 frm = new Form2();
+                    this.Hide();
+                    frm.Show();
                 }
+                else
+                {
+                    MessageBox.Show("Invalid Username or Password");
+                }
+
+
+
             }
         }
+        }
     }
-}

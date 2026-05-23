@@ -57,7 +57,7 @@ namespace WindowsFormsApp3
 
                 if (dt.Rows.Count == 1)
                 {
-                    Form2 frm = new Form2();
+                    frmHome frm = new frmHome();
                     this.Hide();
                     frm.Show();
                 }

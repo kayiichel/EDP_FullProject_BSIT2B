@@ -43,14 +43,24 @@ namespace WindowsFormsApp3
 
         private void button5_Click(object sender, EventArgs e)
         {
-            new Form7().Show();
-            this.Show();
+            Form7 frm = new Form7();
+            frm.Show();
+            this.Hide();
+            
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             new Form8().Show();
             this.Show();
+        }
+
+        private void frmHome_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Form1 frm = new Form1();
+            frm.Show();
+            this.Hide();
+
         }
     }
 }
